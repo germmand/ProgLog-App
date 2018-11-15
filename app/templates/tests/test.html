@@ -29,7 +29,7 @@
 </div>
 
 <div class="response-container">
-    <form action="./validate-response" method="POST" role="form">
+    <form action="/tests/validate-response" method="POST" role="form">
         {{ form.answered_node }}
         {{ form.csrf_token }}
         <input type="hidden" name="subject_name" value="{{ branch.subject }}"></input>

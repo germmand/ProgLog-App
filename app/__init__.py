@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template, send_from_directory, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from app.handlers import db
@@ -27,6 +27,11 @@ def create_app():
     def favicon():
         return send_from_directory(os.path.join(app.root_path, 'static'),
                                    'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+    @app.route('/', methods=['GET'])
+    def root():
+        return redirect(url_for('auth.signin'))
+    
     from app.mod_auth.controllers import mod_auth as auth_module
     from app.mod_tests.controllers import mod_tests as tests_module
     
